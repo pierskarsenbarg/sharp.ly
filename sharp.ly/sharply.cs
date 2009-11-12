@@ -69,20 +69,56 @@ namespace sharp_ly
             string strUrl = baseAPIUrl + "/shorten?version={0}&longUrl={1}&login={2}&apiKey={3}&format=xml";
             strUrl = string.Format(strUrl, apiVersion, System.Web.HttpUtility.UrlEncode(longURL), Username, apiKey);
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc = GetBitlyXML(strUrl);
+            xmlDoc.LoadXml(GetBitlyData(strUrl));
             XmlNode element = xmlDoc.SelectSingleNode("//bitly/results/nodeKeyVal/shortUrl");
             resultUrl = element.InnerText;
             return resultUrl;
         }
 
-        private XmlDocument GetBitlyXML(string URL)
+        /// <summary>
+        /// Get bit.ly shortened URL in the XML format
+        /// </summary>
+        /// <param name="longURL">URL to shorten</param>
+        /// <returns>xmlDoc</returns>
+        public XmlDocument ShortenAsXML(string longURL)
+        {
+            string strUrl = baseAPIUrl + "/shorten?version={0}&longUrl={1}&login={2}&apiKey={3}&format={4}";
+            strUrl = string.Format(strUrl, apiVersion, System.Web.HttpUtility.UrlEncode(longURL), Username, apiKey,GetFormatType(OutputFormatType.xml));
+            string result = GetBitlyData(strUrl);
+            if (!string.IsNullOrEmpty(result))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(result);
+                return xmlDoc;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get bit.ly shortened URL in JSON format
+        /// </summary>
+        /// <param name="longURL">URL to shorten</param>
+        /// <returns>resultJSON</returns>
+        public string ShortenAsJSON(string longURL)
+        {
+            string resultJSON = "";
+            string strUrl = baseAPIUrl + "/shorten?version={0}&longUrl={1}&login={2}&apiKey={3}&format={4}";
+            strUrl = string.Format(strUrl, apiVersion, System.Web.HttpUtility.UrlEncode(longURL), Username, apiKey,GetFormatType(OutputFormatType.json));
+            resultJSON = GetBitlyData(strUrl);
+            return resultJSON;
+        }
+
+        /// <summary>
+        /// Returns xml document from url
+        /// </summary>
+        /// <param name="URL">URL that will return XML</param>
+        /// <returns>xmlDoc</returns>
+        private string GetBitlyData(string URL)
         {
             WebClient client = new WebClient();
             Stream data = client.OpenRead(URL);
             StreamReader reader = new StreamReader(data);
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(reader.ReadToEnd());
-            return xmlDoc;
+            return reader.ReadToEnd();
         }
 
     }
