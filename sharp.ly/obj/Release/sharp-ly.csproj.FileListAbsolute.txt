@@ -1,0 +1,5 @@
+C:\Users\Piers\Documents\Visual Studio 2008\Projects\sharp.ly\sharp.ly\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Piers\Documents\Visual Studio 2008\Projects\sharp.ly\sharp.ly\obj\Release\sharp.ly.dll
+C:\Users\Piers\Documents\Visual Studio 2008\Projects\sharp.ly\sharp.ly\obj\Release\sharp.ly.pdb
+C:\Users\Piers\Documents\Visual Studio 2008\Projects\sharp.ly\sharp.ly\bin\Release\sharp.ly.dll
+C:\Users\Piers\Documents\Visual Studio 2008\Projects\sharp.ly\sharp.ly\bin\Release\sharp.ly.pdb
