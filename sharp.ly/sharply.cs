@@ -108,6 +108,53 @@ namespace sharp_ly
             return resultJSON;
         }
 
+
+        /// <summary>
+        /// Get info about bit.ly link
+        /// </summary>
+        /// <param name="input">can be either a URL or hash</param>
+        /// <returns>Result as type XmlDocument</returns>
+        public XmlDocument InfoAsXML(string input)
+        {
+            string strUrl = baseAPIUrl + "/info?version={0}&login={1}&apiKey={2}&{3}={4}&format={5}";
+            if (input.IndexOf("http://") > 0)
+            {
+                // Is a bit.ly url
+                strUrl = string.Format(strUrl, apiVersion, Username, apiKey, "shortUrl", input, GetFormatType(OutputFormatType.xml));
+                
+            }
+            else
+            {
+                // Is the hash of a url
+                strUrl = string.Format(strUrl, apiVersion, Username, apiKey, "hash", input, GetFormatType(OutputFormatType.xml));
+            }
+            string result = GetBitlyData(strUrl);
+            if (!string.IsNullOrEmpty(result))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(result);
+                return xmlDoc;
+            }
+            return null;
+        }
+
+        public string InfoAsJSON(string input)
+        {
+            string strUrl = baseAPIUrl + "/info?version={0}&login={1}&apiKey={2}&{3}={4}&format={5}";
+            if (input.IndexOf("http://") > 0)
+            {
+                // Is a bit.ly url
+                strUrl = string.Format(strUrl, apiVersion, Username, apiKey, "shortUrl", input, GetFormatType(OutputFormatType.json));
+
+            }
+            else
+            {
+                // Is the hash of a url
+                strUrl = string.Format(strUrl, apiVersion, Username, apiKey, "hash", input, GetFormatType(OutputFormatType.json));
+            }
+            return GetBitlyData(strUrl);
+        }
+
         /// <summary>
         /// Returns xml document from url
         /// </summary>
