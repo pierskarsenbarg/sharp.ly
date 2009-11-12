@@ -6,7 +6,7 @@ using System.Net;
 using System.IO;
 using System.Xml;
 
-namespace sharply
+namespace sharp_ly
 {
     public class sharply
     {
@@ -74,26 +74,6 @@ namespace sharply
             resultUrl = element.InnerText;
             return resultUrl;
         }
-
-        // Major bug in the expand api call as it doesn't return valid xml
-        /*public string Expand(string expandParameter)
-        {
-            string resultUrl = "";
-            if (expandParameter.IndexOf("http://") == 0)
-            {
-                // input is a bit.ly url
-                string strUrl = baseAPIUrl + "/expand?version={0}&shortUrl={1}&login={2}&apiKey={3}&format=xml";
-                strUrl = string.Format(strUrl, apiVersion, System.Web.HttpUtility.UrlEncode(expandParameter), Username, apiKey);
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc = GetBitlyXML(strUrl);
-                resultUrl =  element.ToString();
-            }
-            else
-            {
-                // input is just the hash
-            }
-            return resultUrl;
-        }*/
 
         private XmlDocument GetBitlyXML(string URL)
         {
