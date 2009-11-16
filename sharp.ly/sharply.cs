@@ -197,7 +197,7 @@ namespace sharp_ly
                 strUrl = string.Format(strUrl, apiVersion, Username, apiKey, "hash", input, GetFormatType(OutputFormatType.json));
             }
             return GetBitlyData(strUrl);
-        }
+        }       
 
         /// <summary>
         /// Returns xml document from url
