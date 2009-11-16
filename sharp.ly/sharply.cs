@@ -10,6 +10,9 @@ namespace sharp_ly
 {
     public class sharply
     {
+        /// <summary>
+        /// Differentiate between json format and xml format
+        /// </summary>
         public enum OutputFormatType
         {
             json,
