@@ -203,13 +203,20 @@ namespace sharp_ly
         /// Returns xml document from url
         /// </summary>
         /// <param name="URL">URL that will return XML</param>
-        /// <returns>xmlDoc</returns>
+        /// <returns>Data from bit.ly</returns>
         private string GetBitlyData(string URL)
         {
-            WebClient client = new WebClient();
-            Stream data = client.OpenRead(URL);
-            StreamReader reader = new StreamReader(data);
-            return reader.ReadToEnd();
+            try
+            {
+                WebClient client = new WebClient();
+                Stream data = client.OpenRead(URL);
+                StreamReader reader = new StreamReader(data);
+                return reader.ReadToEnd();
+            }
+            catch (WebException wex)
+            {
+                return wex.ToString();
+            }
         }
 
     }
