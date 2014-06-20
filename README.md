@@ -9,4 +9,3 @@ Binary files can be found in ~/sharp.ly/bin/Release
 
 Src file is ~/sharp.ly/sharply.cs
 
-[![Build status](https://ci.appveyor.com/api/projects/status/rm4adc0jdb3oraks)](https://ci.appveyor.com/project/pierskarsenbarg/sharp-ly)
